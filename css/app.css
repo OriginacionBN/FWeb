@@ -1,0 +1,182 @@
+#index{
+    overflow: hidden;
+}
+#fondo{
+    position:absolute;
+    margin: auto;
+    width: 100%;
+    z-index:0;
+
+}
+#eleccion{
+    left:10%;
+    top:5%;
+    width: 80%;
+    height: 90%;
+    position:fixed; 
+    text-align: center;
+    background-color:#FFFFFF;
+    border-radius:10px;
+}
+body{
+    color: #02428C;
+    margin: 10px;
+    font-family: Tahoma;
+
+}
+b,h1,h2,h3,h4,h5{
+    font-family: Tahoma;
+    text-align: center;
+}
+h6{
+    font-family: Tahoma;
+}
+th,input{
+    text-align: center;
+    vertical-align: middle;
+}
+.table > tbody > tr > td{
+    vertical-align:middle!important;
+    text-align:left;
+}
+.table > tbody > tr > th{
+    vertical-align:middle!important;
+}
+form,div{
+    text-align:center;
+}
+.centrado{
+    text-align: center!important;
+    vertical-align: middle!important;
+}
+.izq{
+    text-align: left!important;
+    vertical-align: middle!important;
+}
+.expanded{
+    margin: -10px;
+}
+.color1{
+    background: #02428C;
+    height: 15px;
+}
+.color2{
+    background: #0051A3;
+    height: 15px;
+}
+.color3{
+    background: #007DC7;
+    height: 15px;
+}
+.color4{
+    background: #1799DA;
+    height: 15px;
+}
+.color5{
+    background: #61C2F0;
+    height: 15px;
+}
+.color6{
+    background: #9DD7F6;
+    height: 15px;
+}
+.F{
+    width:70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top:5px;
+    margin-bottom:10px;
+}
+.fondo{
+    position:relative;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    z-index:0;
+}
+.mensaje{
+    width:100%; 
+    height:100%; 
+    opacity:.98; 
+    top:0; 
+    left:0; 
+    display:none; 
+    position:absolute; 
+    background-color:#313131; 
+    overflow:auto;
+}
+.eleccion{
+    left:35%;
+    top:15%;
+    width: 30%;
+    position:absolute; 
+    text-align: center;
+    background-color:#FFFFFF;
+    border-radius:10px;
+}
+.form-control{
+    height:27px;
+    line-height:27px;
+    padding: 0;
+
+}
+
+/*******************************************/
+body{ 
+    color:#094FA4;
+    margin:20px;
+    position: relative; 
+/*     background-image:linear-gradient(
+        45deg,
+        #C1EBFF, #C1EBFF 20px,
+        #82D8FC 20px,#82D8FC 40px,
+        #23C4FA 40px,#23C4FA 60px,
+        #01B5FA 60px, #01B5FA 80px,
+        #0183DB 80px, #0183DB 100px,
+        #014EA7 100px, #014EA7 120px,
+        white 120px,white 140px); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.cabezera{
+    font-weight: bold;
+    background-color:#3078D0;
+    color:white;
+    text-align:center;
+}
+.total{
+    background-color:#009EE5;
+    font-weight: bold;
+    color:white;
+}   
+h2{
+    margin-top: 0px;
+}
+table tr td.nivel1 {
+    padding-left:2%;
+    text-align: left;
+}
+table tr td.nivel2 {
+    padding-left:5%;
+    text-align: left;
+}
+#boton_finalizar{
+    background:linear-gradient(to bottom,#0079c1 0,#00529b 100%);
+    color:white;
+}
+#boton_finalizar:hover{
+    background:#005098;
+}
+.table-hover>tbody>tr:hover{
+    background-color:#B5E5F9;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
