@@ -337,7 +337,7 @@ function getGastosNegocios(){
 	lista.push(document.getElementById("gastop_comercio_4").value);
 	lista.push(document.getElementById("gastop_comercio_5").value);
 	lista.push(document.getElementById("total_gastop_comercio").value);
-	alert("***");
+	
 	lista.push(document.getElementById("miembros").value);
 	lista.push(document.getElementById("gastos_implicitos").value);
 	lista.push(document.getElementById("alquiler").value);
