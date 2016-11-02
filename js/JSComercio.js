@@ -338,5 +338,11 @@ function getGastosNegocios(){
 	lista.push(document.getElementById("gastop_comercio_5").value);
 	lista.push(document.getElementById("total_gastop_comercio").value);
 	
+	lista.push(document.getElementById("miembros").value);
+	lista.push(document.getElementById("gastos_implicitos").value);
+	lista.push(document.getElementById("alquiler").value);
+	lista.push(document.getElementById("deuda_personal").value);
+	lista.push(document.getElementById("otros_personal").value);
+	lista.push(document.getElementById("total_gastpersonal").value);
 	return lista;
 }
