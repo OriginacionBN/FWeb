@@ -223,10 +223,12 @@ function Calcular_EEFF(){
 function EvaluarCalculadora() {
     var calculadora = false;
     var regimen = document.getElementById('regimen').value;
+    var estado = document.getElementById('btn_Calculadora').style.display;
+	
     if (regimen == 'Reg General') {
         var favorable = evaluarFavorable();
         if (favorable == true) {
-            alert("Puedes ampliar la oferta ingresando a la calculadora!!");
+            if(estado != "block"){alert("Puedes ampliar la oferta ingresando a la calculadora!!");}
             document.getElementById('btn_Calculadora').style.display = 'block';
         }else{
             document.getElementById('btn_Calculadora').style.display = 'none';
