@@ -289,11 +289,12 @@ function evaluarFavorable() {
 	document.getElementById("dictamen").disabled = false;
     if(favorable == true){
     	document.getElementById("dictamen").selectedIndex = "0";
+	    
     }else{
 	document.getElementById("dictamen").selectedIndex = "1";
         document.getElementById("dictamen").disabled = true;
     }
-	
+    document.getElementById("motivo").style.display = 'none';
     return favorable;
 }
 /******************************************************************************************************************************************/
