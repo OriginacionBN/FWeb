@@ -411,7 +411,7 @@ function Agregar_Financimiento_CP() {
                          '     </tr>' +
                          '     <tr>' +
                          '       <td style="width:40%;">Importe de Financiamiento</td>' +
-                         '       <td><input  min="0"  id="Finan_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()Calcular_EEFF();"/></td>' +
+                         '       <td><input  min="0"  id="Finan_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP();Calcular_EEFF();"/></td>' +
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Tasa anual</td>' +
