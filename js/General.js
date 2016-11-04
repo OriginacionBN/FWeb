@@ -332,12 +332,12 @@ function Agregar_Financimiento_LP() {
             ' </tr>' +
             ' <tr>' +
             '   <td>Precio Venta</td>' +
-            '   <td><input min="0"  class="form-control" id="Precio_Venta_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();"/></td>' +
+            '   <td><input min="0"  class="form-control" id="Precio_Venta_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();Calcular_EEFF();"/></td>' +
             '   <td>100%</td>' +
             ' </tr>' +
             ' <tr>' +
             '   <td style="width:40%;">Importe de Financiamiento</td>' +
-            '   <td><input  min="0"  class="form-control" id="Finan_LP_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();" /></td>' +
+            '   <td><input  min="0"  class="form-control" id="Finan_LP_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();Calcular_EEFF();" /></td>' +
             '   <td><div id="Porc_LP_1_1"></div></td>' +
             ' </tr>' +
             ' <tr>' +
@@ -411,7 +411,7 @@ function Agregar_Financimiento_CP() {
                          '     </tr>' +
                          '     <tr>' +
                          '       <td style="width:40%;">Importe de Financiamiento</td>' +
-                         '       <td><input  min="0"  id="Finan_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
+                         '       <td><input  min="0"  id="Finan_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()Calcular_EEFF();"/></td>' +
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Tasa anual</td>' +
