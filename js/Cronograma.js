@@ -1183,4 +1183,5 @@ function Calcular_Resumen() {
     document.getElementById("deuda_personal").value = S6;
     document.getElementById("deuda_personal").innerHTML = Number(Number(S6).toFixed(0)).toLocaleString('en');
     calcular_gastopersonal();
+    Calcular_EEFF();
 }
