@@ -76,8 +76,10 @@ function enviar() {
 }
 function grabar() {
     var lista = enviarInformacion();
+    alert(lista);
     if (lista != null) {
-        google.script.run.preFinalizar(enviarInformacion());
+	
+        google.script.run.preFinalizar(lista);
         //location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
     }
 }
