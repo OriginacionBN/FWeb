@@ -2,7 +2,7 @@ function getDatosCliente() {
     var lista = [];
     var regimen = document.getElementById('regimen').value;
     lista.push(regimen);
-    var rvgl = convNro(document.getElementById('rvgl').value);
+    var rvgl = (document.getElementById('rvgl').value);
     lista.push(rvgl);
     var analista = document.getElementById('analista').value;
     lista.push(analista);
@@ -14,15 +14,15 @@ function getDatosCliente() {
     lista.push(tipoCliente);
     var razonSocial = document.getElementById('razonSocial').value;
     lista.push(razonSocial);
-    var ruc = convNro(document.getElementById('ruc').value);
+    var ruc = (document.getElementById('ruc').value);
     lista.push(ruc);
     var ubicacion = document.getElementById('ubicacion').value;
     lista.push(ubicacion);
-    var aExp = convNro(document.getElementById('aExp').value);
+    var aExp = (document.getElementById('aExp').value);
     lista.push(aExp);
-    var nroPtosVta = convNro(document.getElementById('nroPtosVta').value);
+    var nroPtosVta = (document.getElementById('nroPtosVta').value);
     lista.push(nroPtosVta);
-    var nroAlmacenes = convNro(document.getElementById('nroAlmacenes').value);
+    var nroAlmacenes = (document.getElementById('nroAlmacenes').value);
     lista.push(nroAlmacenes);
     var actividad = document.getElementById('actividad').value;
     lista.push(actividad);
@@ -30,9 +30,9 @@ function getDatosCliente() {
     lista.push(actEspecifica);
     var buro = document.getElementById('buro').value;
     lista.push(buro);
-    var nroEnt = convNro(document.getElementById('nroEnt').value);
+    var nroEnt = (document.getElementById('nroEnt').value);
     lista.push(nroEnt);
-    var edadRL = convNro(document.getElementById('edadRL').value);
+    var edadRL = (document.getElementById('edadRL').value);
     lista.push(edadRL);
     if (regimen == "" || rvgl == 0 || fechaVisita == "" || oficinas == "" || tipoCliente == "" ||
         razonSocial == "" || ruc == 0 || ubicacion == "" || aExp == "" || nroPtosVta == "" || nroAlmacenes == "" ||
