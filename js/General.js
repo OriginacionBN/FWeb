@@ -119,7 +119,7 @@ function enviarInformacion() {
                 listaTodo.push(getPC());
                 listaTodo.push(getPP());
 		listaTodo.push(getResumen());
-
+		alert(listaTodo);
                 return listaTodo;
             } else {
                 alert("Falta completar las ventas");
