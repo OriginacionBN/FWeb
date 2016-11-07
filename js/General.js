@@ -110,6 +110,8 @@ function enviarInformacion() {
                 listaTodo.push(getFinanciamientoCP());
                 listaTodo.push(getPatrimonioInmueble());
                 listaTodo.push(getPatrimonioVehMaq());
+		listaTodo.push(getIngresosComercio());
+		listaTodo.push(getGastosNegocios());
                 listaTodo.push(getLTC());
                 listaTodo.push(getTC());
                 listaTodo.push(getPCCT());
