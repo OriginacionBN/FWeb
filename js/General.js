@@ -110,8 +110,6 @@ function enviarInformacion() {
                 listaTodo.push(getFinanciamientoCP());
                 listaTodo.push(getPatrimonioInmueble());
                 listaTodo.push(getPatrimonioVehMaq());
-                listaTodo.push(getIngresosComercio());
-                listaTodo.push(getGastosNegocios());
                 listaTodo.push(getLTC());
                 listaTodo.push(getTC());
                 listaTodo.push(getPCCT());
@@ -119,7 +117,7 @@ function enviarInformacion() {
                 listaTodo.push(getPC());
                 listaTodo.push(getPP());
 		listaTodo.push(getResumen());
-		alert(listaTodo);
+		
                 return listaTodo;
             } else {
                 alert("Falta completar las ventas");
