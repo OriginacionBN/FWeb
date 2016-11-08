@@ -112,6 +112,7 @@ function getResumen(){
     lista.push(document.getElementById("S7").value);
 	lista.push(document.getElementById("S8").value);
 	lista.push(document.getElementById("S9").value);
+	lista.push(document.getElementById("comentario").value);
 	
 
 	return lista;
