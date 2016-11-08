@@ -76,7 +76,7 @@ function enviar() {
 }
 function grabar() {
     var lista = enviarInformacion();
-    //alert(lista);
+    alert(lista);
     if (lista != null) {
 	
         google.script.run.preFinalizar(lista);
