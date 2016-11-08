@@ -290,9 +290,9 @@ function calcular_valor_evaluado_Total() {
     document.getElementById("bg_13").value = Val_Inm_Eva_Total;
     Calcular_EEFF();
 }
-function getIngresosComercio(){
+function getIngresos(){
 	var lista = [];
-    lista.push(document.getElementById("util_bruta_Total").value);
+        lista.push(document.getElementById("util_bruta_Total").value);
 	lista.push(document.getElementById("ventas_x_prod_Total").value);
 	lista.push(document.getElementById("vtas_comercio_base").value);
 	lista.push(document.getElementById("margen_bruto").value);
@@ -325,24 +325,26 @@ function getIngresosComercio(){
 	return lista;	
 }
 
-function getGastosNegocios(){
+function getEgresos(){
 	var lista = [];
-	lista.push(document.getElementById("planilla").value);
-	lista.push(document.getElementById("num_planilla_comercio").value);
-	lista.push(document.getElementById("sueldo_planilla_comercio").value);
-	lista.push(document.getElementById("total_planilla_comercio").value);
-	lista.push(document.getElementById("gastop_comercio_1").value);
-	lista.push(document.getElementById("gastop_comercio_2").value);
-	lista.push(document.getElementById("gastop_comercio_3").value);
-	lista.push(document.getElementById("gastop_comercio_4").value);
-	lista.push(document.getElementById("gastop_comercio_5").value);
-	lista.push(document.getElementById("total_gastop_comercio").value);
 	
 	lista.push(document.getElementById("miembros").value);
-	lista.push(document.getElementById("gastos_implicitos").value);
-	lista.push(document.getElementById("alquiler").value);
-	lista.push(document.getElementById("deuda_personal").value);
-	lista.push(document.getElementById("otros_personal").value);
-	lista.push(document.getElementById("total_gastpersonal").value);
+    	lista.push(document.getElementById("gastos_implicitos").value);
+    	lista.push(document.getElementById("alquiler").value);
+    	lista.push(document.getElementById("deuda_personal").value);
+    	lista.push(document.getElementById("otros_personal").value);
+    	lista.push(document.getElementById("total_gastpersonal").value);
+
+    	lista.push(document.getElementById("planilla").value);
+    	lista.push(document.getElementById("num_planilla_comercio").value);
+    	lista.push(document.getElementById("sueldo_planilla_comercio").value);
+    	lista.push(document.getElementById("total_planilla_comercio").value);
+    	lista.push(document.getElementById("gastop_comercio_1").value);
+    	lista.push(document.getElementById("gastop_comercio_2").value);
+    	lista.push(document.getElementById("gastop_comercio_3").value);
+    	lista.push(document.getElementById("gastop_comercio_4").value);
+    	lista.push(document.getElementById("gastop_comercio_5").value);
+    	lista.push(document.getElementById("total_gastop_comercio").value);
+	
 	return lista;
 }
