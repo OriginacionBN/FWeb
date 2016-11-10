@@ -71,6 +71,7 @@ function enviar() {
     var lista = enviarInformacion();
     if (lista != null) {
         google.script.run.grabarInfo(enviarInformacion());
+	Descargar_Todo();
         location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
     }
 }
