@@ -70,12 +70,25 @@ function calcTime(offset) {
 function Finalizar() {
     var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion();
+    var S3 = Number(document.getElementById("S3").value);
+    var S6 = Number(document.getElementById("S6").value);
+    var S9 = Number(document.getElementById("S9").value);
     if (lista != null) {
-        alert("Por favor, imprime el formato.");
-        var enviar = [idFila, lista];
-        google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
-        Descargar_Todo();
-        location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
+	var enviar = [idFila, lista];
+	if((S3+S6+S9)>0){
+		alert("Por favor, imprime el formato.");
+		google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
+		Descargar_Todo();
+		location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
+	}else{
+		var confirmar = confirm("Esta a punto de finalizar un informe de visita sin haber llenado el cronograma de pagos. ¿Desea continuar?");
+		if (confirmar) {
+		    google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
+		    location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
+		}else{
+		}
+		
+	}
     }
 }
 function PreFinalizar() {
