@@ -429,13 +429,14 @@ function getEgresos(){
 
     lista.push(document.getElementById("total_costo_venta").value);
 
-    lista = getCosto1(lista);
-    lista = getCosto2(lista);
+    lista.push(getCosto1());
+    lista.push(getCosto2());
 
 
     return lista;
 }
-function getCosto1(lista){
+function getCosto1(){
+    var lista = []:
     var table = document.getElementById("tablaCosto1");
     var total = table.rows.length-2;
     lista.push(total);
@@ -450,10 +451,10 @@ function getCosto1(lista){
         var costo_insumo = convNro(document.getElementById("costo_insumo_"+idx).value);
         lista.push(costo_insumo);
     }
-    
     return lista;
 }
-function getCosto2(lista){
+function getCosto2(){
+    var lista = [];
     var table = document.getElementById("tablaCosto2");
     var total = table.rows.length-2;
     lista.push(total);
@@ -468,6 +469,5 @@ function getCosto2(lista){
         var costo_serv_terc = convNro(document.getElementById("costo_serv_terc_"+idx).value);
         lista.push(costo_serv_terc);
     }
-    
     return lista;
 }
