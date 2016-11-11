@@ -67,23 +67,22 @@ function calcTime(offset) {
     var nd = new Date(utc + (3600000 * offset));
     return nd.toLocaleString();
 }
-function enviar() {
+function Finalizar() {
+    var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion();
     if (lista != null) {
-	alert("Por favor, imprime el formato. Si cancelas, despues solo podrás imprimir los Estados Financieros");
-        google.script.run.grabarInfo(enviarInformacion());
-	Descargar_Todo();
+        alert("Por favor, imprime el formato.");
+        var enviar = [idFila, lista];
+        google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
+        Descargar_Todo();
         location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
     }
 }
-function grabar() {
+function PreFinalizar() {
+    var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion();
-    alert(lista);
-    if (lista != null) {
-	
-        google.script.run.preFinalizar(lista);
-        //location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
-    }
+    var enviar = [idFila, lista];
+    google.script.run.withSuccessHandler(actualizarIDFila).PreFinalizar(enviar);
 }
 function enviarInformacion() {
     var listaTodo = [];
