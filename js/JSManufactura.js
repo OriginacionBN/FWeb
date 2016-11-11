@@ -436,7 +436,7 @@ function getEgresos(){
     return lista;
 }
 function getCosto1(){
-    var lista = []:
+    var lista = [];
     var table = document.getElementById("tablaCosto1");
     var total = table.rows.length-2;
     lista.push(total);
