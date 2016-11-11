@@ -148,7 +148,7 @@ function AgregarTercerizado() {
 }
 function Calcular_Tercerizado_Total() {
     var table = document.getElementById("tablaCosto1");
-    var filas = table.rows.length - 1;
+    var filas = table.rows.length - 2;
     var total_costo_venta_1 = 0;
     for (var idx = 1; idx < filas; idx++) {
         total_costo_venta_1 = total_costo_venta_1 + convNro(document.getElementById("costo_serv_terc_" + idx).value);
