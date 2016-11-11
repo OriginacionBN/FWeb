@@ -147,17 +147,16 @@ function AgregarTercerizado() {
 
 }
 function Calcular_Tercerizado_Total() {
-    var table = document.getElementById("tablaCosto1");
-    var filas = table.rows.length - 2;
-    var total_costo_venta_1 = 0;
+    var table = document.getElementById("tablaCosto2");
+    var filas = table.rows.length - 1;
+    var total_costo_venta_2 = 0;
     for (var idx = 1; idx < filas; idx++) {
-        total_costo_venta_1 = total_costo_venta_1 + convNro(document.getElementById("costo_serv_terc_" + idx).value);
+        total_costo_venta_2 = total_costo_venta_2 + convNro(document.getElementById("costo_serv_terc_" + idx).value);
     }
-    document.getElementById("total_costo_venta_2").value = total_costo_venta_1;
-    document.getElementById("total_costo_venta_2").innerHTML = Number(total_costo_venta_1).toLocaleString('en');
+    document.getElementById("total_costo_venta_2").value = total_costo_venta_2;
+    document.getElementById("total_costo_venta_2").innerHTML = Number(total_costo_venta_2).toLocaleString('en');
 
 }
-
 function Calcular_Costo_Venta() {
     Calcular_Planilla();
     Calcular_Insumo_Total();
