@@ -94,7 +94,7 @@ function Finalizar() {
 		}
 		
 	}else{
-		alert("Debe señalar si existe riesgo vigente");
+		alert("Debe señalar si existe riesgo vigente (Considerar tambien deudas personales)");
 		document.getElementById("seccion_cronograma").focus();
 	}
     }
