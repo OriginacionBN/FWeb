@@ -89,6 +89,9 @@ function Finalizar() {
 	}else if(checks=="No"){
 		var confirmar = confirm("Esta a punto de finalizar un informe de visita sin haber llenado el cronograma de pagos. ¿Desea continuar?");
 		if (confirmar) {
+		    var dictamen = document.getElementById('dictamen').value;
+		    alert("El dictamen es " +dictamen+ ". Por favor, imprime o guarda el formato.");
+		    document.getElementById('seccion_sancion').style.display='block';
 		    google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
 		    location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
 		}else{
