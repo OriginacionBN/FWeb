@@ -80,7 +80,9 @@ function Finalizar() {
     if (lista != null) {
 	var enviar = [idFila, lista];
 	if(checks=="Si"){
-		alert("Por favor, imprime el formato.");
+		var dictamen = document.getElementById('dictamen').value;
+		alert("El dictamen es " +dictamen+ ". Por favor, imprime o guarda el formato.");
+		document.getElementById('seccion_sancion').style.display='block';
 		google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
 		Descargar_Todo();
 		location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
