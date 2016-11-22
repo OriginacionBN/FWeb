@@ -8,7 +8,7 @@ function completarInfo(lista) {
     if (pertenece == true) {
         document.getElementById("seccion_sancion").style.display = 'none';
     } else {
-        //document.getElementById("seccion_sancion").style.display = 'block';
+        document.getElementById("seccion_sancion").style.display = 'block';
     }
 
 
