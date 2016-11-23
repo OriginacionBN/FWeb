@@ -1068,6 +1068,8 @@ function Calcular_Resumen() {
     var LTC_filas = LTC_table.rows.length - 1;
     var PCCT_table = document.getElementById("tablaPrestamoComercial");
     var PCCT_filas = PCCT_table.rows.length - 1;
+    var PC_table = document.getElementById("tablaPrestamoCancelable");
+    var PC_filas = PC_table.rows.length - 1;
     var PA_table = document.getElementById("tablaPrestamoAdquisicion");
     var PA_filas = PA_table.rows.length - 1;
     var TC_table = document.getElementById("tablaTarjetaConsumo");
@@ -1084,7 +1086,11 @@ function Calcular_Resumen() {
     for (var idx = 0; idx < PCCT_filas; idx++) {
         PCCT_S1 = PCCT_S1 + convNro(document.getElementById("PCCT_Mes_Actual_" + idx).value);
     }
-    S1 = LTC_S1 + PCCT_S1;
+    var PC_S1 = 0;
+    for (var idx = 0; idx < PC_filas; idx++) {
+        PC_S1 = PC_S1 + convNro(document.getElementById("PC_Monto_" + idx).value);
+    }
+    S1 = LTC_S1 + PCCT_S1 + PC_S1;
 
     var S2 = 0;
     var PA_S2 = 0;
