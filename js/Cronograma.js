@@ -1154,7 +1154,12 @@ function Calcular_Resumen() {
     for (var idx = 0; idx < PCCT_filas; idx++) {
         PCCT_S7 = PCCT_S7 + convNro(document.getElementById("PCCT_Costo_Financiero_" + idx).value);
     }
-    S7 = LTC_S7 + PCCT_S7;
+    
+    var PC_S7 = 0;
+    for (var idx = 0; idx < PC_filas; idx++) {
+        PC_S7 = PC_S7 + convNro(document.getElementById("PC_Costo_Financiero_" + idx).value);
+    }
+    S7 = LTC_S7 + PCCT_S7 + PC_S7;
 
     var S8 = 0;
     var PA_S8 = 0;
