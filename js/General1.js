@@ -871,3 +871,23 @@ function getGastosPersonales(){
 	lista.push(document.getElementById("total_gastpersonal").value);
 	return lista;
 }
+
+function actualizarIDFila(idFila) {
+	document.getElementById("idFila").value = idFila;
+}
+function confirmar() {
+	var confirmar = confirm("Estas a punto de ir a la Calculadora, se guardarán todos los datos colocados.");
+	var finalizado = document.getElementById('finalizado').value;
+	if(finalizado == 0){
+		if (confirmar) {
+			var lista = enviarInformacion();
+			if (lista != null) {
+				google.script.run.PreFinalizar(lista);
+				location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzeFn5GM6jNvmgu99uyRFUcxRLjKuNR4Chf0t_BpPmLI6JWekI/exec');
+			}
+
+		}
+	}else{
+		location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzeFn5GM6jNvmgu99uyRFUcxRLjKuNR4Chf0t_BpPmLI6JWekI/exec');
+	}
+}
