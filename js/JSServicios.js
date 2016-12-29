@@ -121,6 +121,11 @@ function Calcular_Promedio_Ventas() {
     promedio = promedio * 0.5;
     document.getElementById("costo_venta_compras").value = promedio;
     document.getElementById("costo_venta_compras").innerHTML = Number(promedio).toLocaleString('en');
+    
+    var val = Number(document.getElementById('Ingreso_Total').value)/Number(promedio);
+    if(val>0.3){
+        alert("Estos ingresos superan el % limite de las ventas: Llenar Formato de Comercio");
+    }
 
 }
 function Calcular_Ingreso_Manufactura() {
