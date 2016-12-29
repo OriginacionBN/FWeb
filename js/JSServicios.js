@@ -35,14 +35,18 @@ function Calcular_Ingreso_Total() {
     for (var idx = 1; idx < filas; idx++) {
         Ingreso_Total += Calcular_Ingreso_Mensual(idx);
     }
+    
     document.getElementById("Ingreso_Total").innerHTML = Number(Ingreso_Total).toLocaleString('en');
     document.getElementById("Ingreso_Total").value = Ingreso_Total;
 
-    document.getElementById("Ventas_Total").innerHTML = Number(Ingreso_Total).toLocaleString('en');
-    document.getElementById("Ventas_Total").value = Ingreso_Total;
+    Calcular_Promedio_Ventas();
+    var prom = Number(document.getElementById('ingreso_mes_promedio').value);
+    
+    document.getElementById("Ventas_Total").innerHTML = Number(Ingreso_Total+prom).toLocaleString('en');
+    document.getElementById("Ventas_Total").value = Ingreso_Total+prom;
 
-    document.getElementById("egp_ventas").innerHTML = Number(Ingreso_Total).toLocaleString('en');
-    document.getElementById("egp_ventas").value = Ingreso_Total;
+    document.getElementById("egp_ventas").innerHTML = Number(Ingreso_Total+prom).toLocaleString('en');
+    document.getElementById("egp_ventas").value = Ingreso_Total+prom;
 }
 function Calcular_Informalidad() {
     var declarado = convNro(document.getElementById("declarado").value);
