@@ -124,7 +124,6 @@ function Calcular_Promedio_Ventas() {
     
     var val = convNro(promedio)/convNro(document.getElementById('Ingreso_Total').value);
     var advertido = document.getElementById('advertido').value;
-    alert(advertido);
     if(val>0.3 && advertido == "0"){
         alert("Estos ingresos superan el % limite de las ventas: Llenar Formato de Comercio");
         document.getElementById('advertido').value= "1";
