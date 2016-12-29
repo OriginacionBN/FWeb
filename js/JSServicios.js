@@ -122,7 +122,7 @@ function Calcular_Promedio_Ventas() {
     document.getElementById("costo_venta_compras").value = promedio;
     document.getElementById("costo_venta_compras").innerHTML = Number(promedio).toLocaleString('en');
     
-    var val = Number(promedio)/Number(document.getElementById('Ingreso_Total').value);
+    var val = convNro(promedio)/convNro(document.getElementById('Ingreso_Total').value);
     if(val>0.3){
         alert("Estos ingresos superan el % limite de las ventas: Llenar Formato de Comercio");
     }
