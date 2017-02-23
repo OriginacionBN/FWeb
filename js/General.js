@@ -298,7 +298,7 @@ function evaluarFavorable() {
                     favorable = false;
                 }
             } else {
-                if (nroEntidades >= 4 && nroEntidades <= 5) {
+                if (nroEntidades >= 4) {
                     favorable = false;
                 }
             }
@@ -309,7 +309,7 @@ function evaluarFavorable() {
                         favorable = false;
                     }
                 } else {
-                    if (nroEntidades >= 3 && nroEntidades <= 4) {
+                    if (nroEntidades >= 3) {
                         favorable = false;
                     }
                 }
