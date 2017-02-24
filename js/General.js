@@ -167,3 +167,86 @@ function convNro(nroComas) {
     }
     return Number(sinComas);
 }
+function validarNumero(id) {
+    if (document.getElementById(id).value != "") {
+        var conComas = document.getElementById(id).value;
+
+        var texto = conComas.split(",");
+        var sinComas = texto.join("");
+        var n = sinComas.indexOf(".");
+        var siguiente = "";
+        if (Number(n) != -1) {
+            siguiente = sinComas.charAt(n + 1);
+        }
+        if (sinComas.length > 15) {
+            alert("Excedio la cantidad permitida de dígitos");
+            document.getElementById(id).value = "";
+        } else {
+            if (isNaN(sinComas)) {
+                alert("Ingrese un número válido");
+                document.getElementById(id).value = "";
+            } else {
+                var nuevo = Number(sinComas).toLocaleString('en');
+    //alert(nuevo);
+                if (Number(n) == -1) {
+                    document.getElementById(id).value = nuevo;
+                    document.getElementById(id).setAttribute('value', nuevo);
+                } else {
+                    if (siguiente == "") {
+                        document.getElementById(id).value = nuevo + ".";
+                        document.getElementById(id).setAttribute('value', nuevo + ".");
+                    } else {
+                        document.getElementById(id).value = nuevo;
+                        document.getElementById(id).setAttribute('value', nuevo);
+                    }
+
+                }
+            }
+        }
+    }
+}
+function AbrirMensaje(id, Principal) {
+    document.getElementById(id).style.display = "block";
+    document.getElementById(Principal).style.display = "none";
+    if (id == "mensaje") {
+        document.getElementById('header').scrollIntoView();
+    }
+    document.getElementById('btn_Cerrar').style.display = "block";
+    document.getElementById('btn_Abrir').style.display = "none";
+}
+function CerrarMensaje(id, Principal) {
+    document.getElementById(id).style.display = "none";
+    document.getElementById(Principal).style.display = "block";
+    document.getElementById('btn_Abrir').scrollIntoView();
+    document.getElementById('btn_Cerrar').style.display = "none";
+    document.getElementById('btn_Abrir').style.display = "block";
+}
+
+function AbrirMensajeCrono(id, Principal) {
+    document.getElementById(id).style.display = "block";
+    document.getElementById(Principal).style.display = "none";
+    if (id == "mensaje") {
+        document.getElementById('header').scrollIntoView();
+    }
+    document.getElementById('btn_Cerrar').style.display = "block";
+    document.getElementById('btn_Abrir').style.display = "none";
+    document.getElementById("btn_Descargar_EEFF").style.display = 'none';
+    document.getElementById("btn_Descargar").style.display = 'none';
+}
+function CerrarMensajeCrono(id, Principal) {
+    document.getElementById(id).style.display = "none";
+    document.getElementById(Principal).style.display = "block";
+    document.getElementById('btn_Abrir').scrollIntoView();
+    document.getElementById('btn_Cerrar').style.display = "none";
+    document.getElementById('btn_Abrir').style.display = "block";
+    document.getElementById("btn_Descargar_EEFF").style.display = '';
+    document.getElementById("btn_Descargar").style.display = '';
+	
+}
+
+function Calcular_EEFF(){
+    Calcular_BG();
+    Calcular_EGP();
+    Calcular_Ratios();
+    EvaluarCalculadora();
+}
