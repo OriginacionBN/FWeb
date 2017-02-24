@@ -24,6 +24,17 @@ function Calcular_Estacionalidad(){
             tit3 = "PDT - Mayo";
         }
     }
+    if(estacional == true){
+        document.getElementById('seccion_estacionalidad').style.display = '';
+        document.getElementById('tit1').innerHTML = tit1;
+	document.getElementById('tit1').value = tit1;
+        document.getElementById('tit2').innerHTML = tit2;
+        document.getElementById('tit2').value = tit2;
+	document.getElementById('tit3').innerHTML = tit3;
+	document.getElementById('tit3').value = tit3;
+    }else{
+        document.getElementById('seccion_estacionalidad').style.display = 'none';
+    }
 }
 function completarInfo(lista) {
     var analistas = lista[0];
