@@ -1,3 +1,18 @@
+function Calcular_Estacionalidad(){
+    var estacional = false;
+    var importador = document.getElementById('importador').value;
+    var finan = convNro(document.getElementById('cant_finan_CP').value);
+    var propuesta = 0;
+    var tit1 = "";
+    var tit2 = "";
+    var tit3 = "";
+    for(var i = 0; i<finan; i++){
+        var p = document.getElementById('Tipo_Prod_CP_'+i).value;
+        if(p == "Préstamo para capital de trabajo" || p == "Préstamo para adquisición de bienes muebles pequeños"){
+            propuesta += 1;
+        }
+    }
+}
 function completarInfo(lista) {
     var analistas = lista[0];
     var oficinas = lista[1];
