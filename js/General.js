@@ -483,3 +483,393 @@ function Agregar_Financimiento_CP() {
     }
     Calcular_Propuestas_CP();
 }
+
+function Eliminar_Financimiento_LP() {
+    var idx = document.getElementById("cant_finan_LP").value;
+    if (idx > 0) {
+        var padre = document.getElementById("Financimiento_LP");
+        var hijo = document.getElementById("Largo_Plazo_" + idx);
+        var oldChild = padre.removeChild(hijo);
+        document.getElementById("cant_finan_LP").value = idx - 1;
+    }
+}
+function Eliminar_Financimiento_CP() {
+    var idx = document.getElementById("cant_finan_CP").value;
+    if (idx > 0) {
+        var padre = document.getElementById("Financimiento_CP");
+        var hijo = document.getElementById("Corto_Plazo_" + idx);
+        var oldChild = padre.removeChild(hijo);
+        document.getElementById("cant_finan_CP").value = idx - 1;
+    }
+}
+function Calcular_Propuestas_LP() {
+    var idx = document.getElementById("cant_finan_LP").value;
+
+
+    for (var i = 1; i <= idx; i++) {
+        var Tipo_Prod = document.getElementById("Tipo_Prod_LP_" + i).value;
+        document.getElementById("Tipo_Prod_LP_" + i).setAttribute('value', Tipo_Prod);
+        var vIndex = document.getElementById("Tipo_Prod_LP_" + i).selectedIndex;
+        document.getElementById("Tipo_Prod_LP_" + i).setAttribute('selectedIndex', vIndex);
+
+        Calcular_Cuota_Inicial_LP(i);
+        Calcular_Porcentajes_LP(i);
+        Calcular_Tasa_Mensual_LP(i);
+        Calcular_Cuota_LP(i);
+    }
+    Calcular_EGP();
+}
+function Calcular_Cuota_Inicial_LP(idx) {
+    var Tipo_Prod = document.getElementById("Tipo_Prod_LP_" + idx).value;
+    if (Tipo_Prod != "Subrogación de deuda") {
+        var Precio_Venta = convNro(document.getElementById("Precio_Venta_" + idx).value);
+        var Finan_LP = convNro(document.getElementById("Finan_LP_" + idx).value);
+        var Cuota_Inicial = Precio_Venta - Finan_LP;
+        if (Precio_Venta > Finan_LP) {
+            document.getElementById("Cuota_Inicial_LP_" + idx).innerHTML = Number(Cuota_Inicial).toLocaleString('en');
+            document.getElementById("Cuota_Inicial_LP_" + idx).value = Cuota_Inicial;
+        } else {
+            document.getElementById("Cuota_Inicial_LP_" + idx).innerHTML = "";
+            document.getElementById("Cuota_Inicial_LP_" + idx).value = 0;
+        }
+    } else {
+        document.getElementById("Cuota_Inicial_LP_" + idx).innerHTML = "";
+        document.getElementById("Cuota_Inicial_LP_" + idx).value = 0;
+    }
+}
+function Calcular_Porcentajes_LP(idx) {
+    var Precio_Venta = convNro(document.getElementById("Precio_Venta_" + idx).value);
+    var Finan_LP = convNro(document.getElementById("Finan_LP_" + idx).value);
+    var Cuota_Inicial = convNro(document.getElementById("Cuota_Inicial_LP_" + idx).value);
+    var Porc_Finan = Finan_LP / Precio_Venta * 100;
+    var Porc_Cuota = Cuota_Inicial / Precio_Venta * 100;
+
+    if (Precio_Venta > Finan_LP) {
+        document.getElementById("Porc_LP_1_1").innerHTML = Number(Porc_Finan).toFixed(0) + "%";
+        document.getElementById("Porc_LP_1_1").value = Porc_Finan;
+
+        document.getElementById("Porc_LP_1_2").innerHTML = Number(Porc_Cuota).toFixed(0) + "%";
+        document.getElementById("Porc_LP_1_2").value = Porc_Cuota;
+    } else {
+        document.getElementById("Porc_LP_1_1").innerHTML = "";
+        document.getElementById("Porc_LP_1_1").value = 0;
+        document.getElementById("Porc_LP_1_2").innerHTML = "";
+        document.getElementById("Porc_LP_1_2").value = 0;
+    }
+}
+function Calcular_Tasa_Mensual_LP(idx) {
+    var TEA_LP = convNro(document.getElementById("TEA_LP_" + idx).value);
+
+    if (TEA_LP > 0) {
+        var TEM_LP = ((Math.pow(1 + TEA_LP / 100, 1 / 12) - 1) * 100);
+
+        document.getElementById("TEM_LP_" + idx).innerHTML = Number(TEM_LP).toFixed(2) + "%";
+        document.getElementById("TEM_LP_" + idx).value = Number(TEM_LP).toFixed(2) + "%";
+    } else {
+        document.getElementById("TEM_LP_" + idx).innerHTML = "";
+    }
+}
+function Calcular_Cuota_LP(idx) {
+    var Plazo_LP = convNro(document.getElementById("Plazo_LP_" + idx).value);
+    var Finan_LP = convNro(document.getElementById("Finan_LP_" + idx).value);
+    var TEA_LP = convNro(document.getElementById("TEA_LP_" + idx).value);
+
+    if (Plazo_LP > 0 && Finan_LP > 0 && TEA_LP > 0) {
+
+        var TEM_LP = Math.pow(1 + TEA_LP / 100, 1 / 12) - 1;
+        document.getElementById("Cuota_LP_" + idx).innerHTML = Number((Finan_LP / ((1 - Math.pow(1 + TEM_LP, -Plazo_LP)) / (TEM_LP))).toFixed()).toLocaleString('en');
+        document.getElementById("Cuota_LP_" + idx).value = Number((Finan_LP / ((1 - Math.pow(1 + TEM_LP, -Plazo_LP)) / (TEM_LP))).toFixed());
+        document.getElementById("Cuota_LP_" + idx + "_hidden").value = Finan_LP / ((1 - Math.pow(1 + TEM_LP, -Plazo_LP)) / (TEM_LP));
+        document.getElementById("Cuota_LP_" + idx + "_hidden").setAttribute('value', (Finan_LP / ((1 - Math.pow(1 + TEM_LP, -Plazo_LP)) / (TEM_LP))));
+
+    } else {
+        document.getElementById("Cuota_LP_" + idx).innerHTML = "";
+    }
+}
+function Calcular_Cuotas_LP_Total() {
+    var idx = document.getElementById("cant_finan_LP").value;
+    var total = 0;
+    for (var i = 1; i <= idx; i++) {
+        total = total + convNro(document.getElementById("Cuota_LP_" + idx).value);
+    }
+    return total;
+}
+function Calcular_Propuestas_CP() {
+    var idx = document.getElementById("cant_finan_CP").value;
+
+    for (var i = 1; i <= idx; i++) {
+        var Tipo_Prod = document.getElementById("Tipo_Prod_CP_" + i).value;
+        document.getElementById("Tipo_Prod_CP_" + i).setAttribute('value', Tipo_Prod);
+        var vIndex = document.getElementById("Tipo_Prod_CP_" + i).selectedIndex;
+        document.getElementById("Tipo_Prod_CP_" + i).setAttribute('selectedIndex', vIndex);
+
+        Calcular_Tasa_Mensual_CP(i);
+        Calcular_Cuota_CP(i);
+        Calcular_GastFin_CP(i);
+    }
+    Calcular_EGP();
+}
+function Calcular_Tasa_Mensual_CP(idx) {
+    var TEA_CP = convNro(document.getElementById("TEA_CP_" + idx).value);
+    if (TEA_CP > 0) {
+        var TEM_CP = ((Math.pow(1 + TEA_CP / 100, 1 / 12) - 1) * 100);
+        document.getElementById("TEM_CP_" + idx).innerHTML = Number(TEM_CP).toFixed(2) + "%";
+        document.getElementById("TEM_CP_" + idx).value = Number(TEM_CP).toFixed(2) + "%";
+    } else {
+        document.getElementById("TEM_CP_" + idx).innerHTML = "";
+    }
+}
+function Calcular_Cuota_CP(idx) {
+    var Plazo_CP = convNro(document.getElementById("Plazo_CP_" + idx).value);
+    var Finan_CP = convNro(document.getElementById("Finan_CP_" + idx).value);
+    var TEA_CP = convNro(document.getElementById("TEA_CP_" + idx).value);
+
+    if (Plazo_CP > 0 && Finan_CP > 0 && TEA_CP > 0) {
+
+        var TEM_CP = Math.pow(1 + TEA_CP / 100, 1 / 12) - 1;
+        document.getElementById("Cuota_CP_" + idx).innerHTML = Number((Finan_CP / ((1 - Math.pow(1 + TEM_CP, -Plazo_CP)) / (TEM_CP))).toFixed()).toLocaleString('en');
+        document.getElementById("Cuota_CP_" + idx).value = Number((Finan_CP / ((1 - Math.pow(1 + TEM_CP, -Plazo_CP)) / (TEM_CP))).toFixed());
+        document.getElementById("Cuota_CP_" + idx + "_hidden").value = Finan_CP / ((1 - Math.pow(1 + TEM_CP, -Plazo_CP)) / (TEM_CP));
+        document.getElementById("Cuota_CP_" + idx + "_hidden").setAttribute('value', (Finan_CP / ((1 - Math.pow(1 + TEM_CP, -Plazo_CP)) / (TEM_CP))));
+    } else {
+        document.getElementById("Cuota_CP_" + idx).innerHTML = "";
+        document.getElementById("Cuota_CP_" + idx + "_hidden").setAttribute('value', 0);
+    }
+}
+function Calcular_GastFin_CP(idx) {
+    var Finan_CP = convNro(document.getElementById("Finan_CP_" + idx).value);
+    var TEA_CP = convNro(document.getElementById("TEA_CP_" + idx).value);
+    if (Finan_CP > 0 && TEA_CP > 0) {
+
+        var GastFin_CP = Finan_CP * (Math.pow(1 + TEA_CP / 100, 1 / 12) - 1);
+
+        document.getElementById("GastFin_CP_" + idx).innerHTML = Number(GastFin_CP.toFixed()).toLocaleString('en');
+        document.getElementById("GastFin_CP_" + idx).value = GastFin_CP.toFixed();
+
+        document.getElementById("GastFin_CP_" + idx + "_hidden").value = GastFin_CP;
+        document.getElementById("GastFin_CP_" + idx + "_hidden").setAttribute('value', GastFin_CP);
+        return convNro(GastFin_CP);
+    } else {
+        document.getElementById("GastFin_CP_" + idx).innerHTML = "";
+        document.getElementById("GastFin_CP_" + idx + "_hidden").value = 0;
+        document.getElementById("GastFin_CP_" + idx + "_hidden").setAttribute('value', '');
+        return 0;
+    }
+
+}
+function Calcular_Valor_Bien(idx) {
+    var Veh_Maq = document.getElementById("Veh_Maq_" + idx).value;
+    var Valor_Nuevo = convNro(document.getElementById("Valor_Nuevo_" + idx).value);
+    var Antiguedad = convNro(document.getElementById("Antiguedad_" + idx).value);
+    var Factor = 0;
+    var Valor_Bien = 0;
+    if (Veh_Maq != 0 && Valor_Nuevo > 0 && Antiguedad > 0) {
+        if (Veh_Maq == "Vehiculo") {
+            switch (true) {
+                case (0 < Antiguedad && Antiguedad < 3):
+                    Factor = 1;
+                    break;
+                case (2 < Antiguedad && Antiguedad < 5):
+                    Factor = 0.8;
+                    break;
+                case (4 < Antiguedad && Antiguedad < 7):
+                    Factor = 0.6;
+                    break;
+                case (6 < Antiguedad && Antiguedad < 9):
+                    Factor = 0.4;
+                    break;
+                case (8 < Antiguedad):
+                    Factor = 0.2;
+                    break;
+            }
+        } else if (Veh_Maq == "Maquinaria") {
+            switch (true) {
+                case (0 < Antiguedad && Antiguedad < 5):
+                    Factor = 1;
+                    break;
+                case (4 < Antiguedad && Antiguedad < 10):
+                    Factor = 0.7;
+                    break;
+                case (9 < Antiguedad && Antiguedad < 15):
+                    Factor = 0.5;
+                    break;
+                case (14 < Antiguedad):
+                    Factor = 0.3;
+                    break;
+            }
+        }
+        Valor_Bien = Valor_Nuevo * Factor;
+        document.getElementById("Valor_Bien_" + idx).innerHTML = Number(Valor_Bien).toLocaleString('en');
+        document.getElementById("Valor_Bien_" + idx).value = Valor_Bien;
+    } else {
+        document.getElementById("Valor_Bien_" + idx).innerHTML = '';
+        document.getElementById("Valor_Bien_" + idx).value = '';
+    }
+    return Valor_Bien;
+}
+function Calcular_Valor_Bien_Total() {
+    var table = document.getElementById("tablaPatrimonioVehiculos");
+    var filas = table.rows.length - 1;
+    var Valor_Bien_Total = 0;
+    for (var idx = 1; idx < filas; idx++) {
+        Valor_Bien_Total += Calcular_Valor_Bien(idx);
+    }
+
+    document.getElementById("Valor_Bien_Total").innerHTML = Number(Valor_Bien_Total).toLocaleString('en');
+    document.getElementById("Valor_Bien_Total").value = Valor_Bien_Total;
+
+    document.getElementById("bg_14").innerHTML = Number(Valor_Bien_Total).toLocaleString('en');
+    document.getElementById("bg_14").value = Valor_Bien_Total;
+    Calcular_BG();
+}
+function AgregarPatrimonio1() {
+
+    var table = document.getElementById("tablaPatrimonioInmueble");
+    var idx = table.rows.length - 1;
+    var row = table.insertRow(idx);
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    cell1.innerHTML = '<input class="form-control" id = "Ubic_' + idx + '"/>';
+    cell2.innerHTML = '<input class="form-control" id="Propietario_' + idx + '"/>';
+    cell3.innerHTML = '<input class="form-control" id="Uso_' + idx + '"/>';
+    cell4.innerHTML = '<select class="form-control" id="Realizable_' + idx + '" onchange="calcular_valor_evaluado_Total();">' +
+            '<option value="0"></option>' +
+            '<option value="Si">Si</option>' +
+            '<option value="No">No</option>' +
+            '</select>';
+    //calcular_util_bruta('+"'"+idx+"'"+');
+    cell5.innerHTML = '<input class="form-control" id="Metraje_' + idx + '" onkeyup="validarNumero(id);calcular_valor_declarado_Total();"/>';
+    cell6.innerHTML = '<input class="form-control" id="Precio_' + idx + '" onkeyup="validarNumero(id);calcular_valor_declarado_Total();"/>';
+    cell7.innerHTML = '<div id="Val_Inm_Dec_' + idx + '">';
+    cell8.innerHTML = '<div id="Val_Inm_Eva_' + idx + '">';
+}
+function EliminarPatrimonio1() {
+    var table = document.getElementById("tablaPatrimonioInmueble");
+    var idx = table.rows.length - 2;
+    if (table.rows.length > 3) {
+        table.deleteRow(idx);
+        calcular_valor_declarado_Total();
+    }
+}
+function AgregarPatrimonio2() {
+
+    var table = document.getElementById("tablaPatrimonioVehiculos");
+    var idx = table.rows.length - 1;
+    var row = table.insertRow(idx);
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    cell1.innerHTML = '<select class="form-control" id="Veh_Maq_' + idx + '" onchange="Calcular_Valor_Bien_Total();">' +
+            '<option value="0"></option>' +
+            '<option value="Vehiculo">Vehiculo</option>' +
+            '<option value="Maquinaria">Maquinaria</option>' +
+            '</select>';
+    //calcular_util_bruta('+"'"+idx+"'"+');
+    cell2.innerHTML = '<input class="form-control" id="Placa_' + idx + '"/>';
+    cell3.innerHTML = '<input class="form-control" id="Valor_Nuevo_' + idx + '" onkeyup="validarNumero(id);Calcular_Valor_Bien_Total();"/>';
+    cell4.innerHTML = '<input class="form-control" id="Antiguedad_' + idx + '" onkeyup="validarNumero(id);Calcular_Valor_Bien_Total();"/>';
+    cell5.innerHTML = '<div id="Valor_Bien_' + idx + '">';
+}
+function EliminarPatrimonio2() {
+    var table = document.getElementById("tablaPatrimonioVehiculos");
+    var idx = table.rows.length - 2;
+    if (table.rows.length > 3) {
+        table.deleteRow(idx);
+    }
+}
+function Calcular_Ratios() {
+
+    var TPC = convNro(document.getElementById("total_pasivo_cte").value);
+    var TAC = convNro(document.getElementById("total_activo_cte").value);
+    var bg_5 = convNro(document.getElementById("bg_5").value);
+    var egp_costoven = convNro(document.getElementById("egp_costoven").value);
+    var egp_ventas = convNro(document.getElementById("egp_ventas").value);
+    var bg_3 = convNro(document.getElementById("bg_3").value);
+    var bg_17 = convNro(document.getElementById("bg_17").value);
+    var bg_19 = convNro(document.getElementById("bg_19").value);
+    var egp_gastfinan = convNro(document.getElementById("egp_gastfinan").value);
+    var egp_uneta = convNro(document.getElementById("egp_uneta").value);
+
+    var LiquidezCTE = TAC / TPC;
+    if (TPC == 0) {
+        LiquidezCTE = 0;
+    }
+    var CapitalTrabajo = TAC - TPC;
+
+    var DiasExistencias = ((bg_5 * 365) / (egp_costoven * 12));
+    if (egp_costoven == 0) {
+        DiasExistencias = 0;
+    }
+    var DiasCobro = ((bg_3 * 365) / (egp_ventas * 12));
+    if (egp_ventas == 0) {
+        DiasCobro = 0;
+    }
+    var DiasPago = ((bg_17 * 360) / (egp_costoven * 12));
+    if (egp_costoven == 0) {
+        DiasPago = 0;
+    }
+    var CicloNegocio = DiasExistencias + DiasCobro - DiasPago;
+
+    var cuotas = convNro(Calcular_Cuotas_LP_Total());
+    var PA_table = document.getElementById("tablaPrestamoAdquisicion");
+    var PA_filas = PA_table.rows.length - 1;
+    var PA_S5 = 0;
+    for (var idx = 0; idx < PA_filas; idx++) {
+        PA_S5 = PA_S5 + convNro(document.getElementById("PA_Cuota_Pagar_Aprox_" + idx).value);
+    }
+    var suma1 = 0;
+    suma1 = convNro(cuotas) + convNro(PA_S5);
+
+
+    var payback = 0;
+    if ((egp_uneta + suma1) != 0) {
+        payback = (bg_19 / (egp_uneta + suma1));
+    }
+
+    var CoberturaDeuda = 0;
+
+    if (egp_gastfinan != 0) {
+        CoberturaDeuda = (egp_uneta + egp_gastfinan) / egp_gastfinan;
+    }
+
+
+    document.getElementById("LiquidezCTE").innerHTML = Number(LiquidezCTE).toFixed(2);
+    document.getElementById("CapitalTrabajo").innerHTML = Number(Number(CapitalTrabajo).toFixed(2)).toLocaleString('en');
+    document.getElementById("DiasExistencias").innerHTML = Number(DiasExistencias).toFixed(2);
+    document.getElementById("DiasCobro").innerHTML = Number(DiasCobro).toFixed(2);
+    document.getElementById("DiasPago").innerHTML = Number(DiasPago).toFixed(2);
+    document.getElementById("CicloNegocio").innerHTML = Number(CicloNegocio).toFixed(2);
+    document.getElementById("PayBack").innerHTML = Number(payback).toFixed(2);
+    document.getElementById("CoberturaDeuda").innerHTML = Number(CoberturaDeuda).toFixed(2);
+
+
+    document.getElementById("LiquidezCTE").value = Number(LiquidezCTE);
+    document.getElementById("CapitalTrabajo").value = Number(CapitalTrabajo);
+    document.getElementById("DiasExistencias").value = Number(DiasExistencias);
+    document.getElementById("DiasCobro").value = Number(DiasCobro);
+    document.getElementById("DiasPago").value = Number(DiasPago);
+    document.getElementById("CicloNegocio").value = Number(CicloNegocio);
+    document.getElementById("PayBack").value = Number(payback);
+    document.getElementById("CoberturaDeuda").value = Number(CoberturaDeuda);
+    cambioSancion();
+}
+function getGastosPersonales(){
+	var lista = [];
+	lista.push(document.getElementById("miembros").value);
+	lista.push(document.getElementById("gastos_implicitos").value);
+	lista.push(document.getElementById("alquiler").value);
+	lista.push(document.getElementById("deuda_personal").value);
+	lista.push(document.getElementById("otros_personal").value);
+	lista.push(document.getElementById("total_gastpersonal").value);
+	return lista;
+}
