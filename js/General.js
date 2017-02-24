@@ -250,3 +250,82 @@ function Calcular_EEFF(){
     Calcular_Ratios();
     EvaluarCalculadora();
 }
+
+function EvaluarCalculadora() {
+    var calculadora = false;
+    var regimen = document.getElementById('regimen').value;
+    var estado = document.getElementById('btn_Calculadora').style.display;
+	
+    if (regimen == 'Reg General') {
+        var favorable = evaluarFavorable();
+        if (favorable == true) {
+            if(estado != "block"){alert("Puedes ampliar la oferta ingresando a la calculadora!!");}
+            document.getElementById('btn_Calculadora').style.display = 'block';
+        }else{
+            document.getElementById('btn_Calculadora').style.display = 'none';
+        }
+    }else{
+        document.getElementById('btn_Calculadora').style.display = 'none';
+    }
+    return calculadora;
+}
+function evaluarFavorable() {
+    var favorable = false;
+    var ventas = convNro(document.getElementById('egp_ventas').value);
+    if (ventas > 30000) {
+        var egp_uneta = convNro(document.getElementById('egp_uneta').value);
+        if (egp_uneta > 0) {
+            var buro = document.getElementById('buro').value;
+            var tipoCliente = document.getElementById('tipoCliente').value;
+            if ((tipoCliente == 'PJ' && (buro == 'G1' || buro == 'G2' || buro == 'G3' || buro == 'G4' || buro == 'G5')) || (tipoCliente == 'PNN' && (buro == 'G1' || buro == 'G2' || buro == 'G3'))) {
+                var edadRL = convNro(document.getElementById('edadRL').value);
+                if (edadRL >= 25) {
+                    var antiguedad = convNro(document.getElementById('aExp').value);
+                    if ((tipoCliente == 'PJ' && antiguedad >= 1) || (tipoCliente == 'PNN' && antiguedad >= 2)) {
+                        favorable = true;
+                    }
+                }
+            }
+        }
+    }
+    var nroEntidades = convNro(document.getElementById('nroEnt').value);
+    var cobertura = convNro(document.getElementById('CoberturaDeuda').value);
+    if (cobertura < 1) {
+        favorable = false;
+    } else {
+        if (tipoCliente == 'PJ') {
+            if (cobertura > 1.4) {
+                if (nroEntidades >= 6) {
+                    favorable = false;
+                }
+            } else {
+                if (nroEntidades >= 4 && nroEntidades < 6) {
+                    favorable = false;
+                }
+            }
+        } else if (tipoCliente == 'PNN') {
+            {
+                if (cobertura > 1.4) {
+                    if (nroEntidades >= 5) {
+                        favorable = false;
+                    }
+                } else {
+                    if (nroEntidades >= 3 && nroEntidades < 5) {
+                        favorable = false;
+                    }
+                }
+            }
+        }
+    }
+	document.getElementById("dictamen").disabled = false;
+    if(favorable == true){
+    	document.getElementById("dictamen").selectedIndex = "0";
+	    
+    }else{
+	document.getElementById("dictamen").selectedIndex = "1";
+        document.getElementById("dictamen").disabled = true;
+    }
+    document.getElementById("motivo").style.display = 'none';
+    return favorable;
+}
+/******************************************************************************************************************************************/
