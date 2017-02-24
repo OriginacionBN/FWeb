@@ -7,7 +7,7 @@ function Calcular_Estacionalidad(){
     var tit2 = "";
     var tit3 = "";
     for(var i = 0; i<finan; i++){
-        var p = document.getElementById('Tipo_Prod_CP_'+i).value;
+        var p = document.getElementById('Tipo_Prod_CP_'+(i+1)).value;
         if(p == "Préstamo para capital de trabajo" || p == "Préstamo para adquisición de bienes muebles pequeños"){
             propuesta += 1;
         }
