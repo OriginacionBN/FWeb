@@ -12,6 +12,18 @@ function Calcular_Estacionalidad(){
             propuesta += 1;
         }
     }
+    if(importador != "0" && propuesta !="0"){
+        estacional = true;
+        if(importador == "Si"){
+            tit1 = "PDT - Enero";
+            tit2 = "PDT - Febrero";
+            tit3 = "PDT - Marzo";
+        }else{
+            tit1 = "PDT - Marzo";
+            tit2 = "PDT - Abril";
+            tit3 = "PDT - Mayo";
+        }
+    }
 }
 function completarInfo(lista) {
     var analistas = lista[0];
