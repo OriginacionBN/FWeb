@@ -329,3 +329,78 @@ function evaluarFavorable() {
     return favorable;
 }
 /******************************************************************************************************************************************/
+
+function Agregar_Financimiento_LP() {
+    var vIndex = [];
+    vIndex.push("Inicio");
+    var idx = Number(document.getElementById("cant_finan_LP").value);
+    var total = idx;
+    var i = 1;
+    while (i <= total) {
+        vIndex.push(document.getElementById("Tipo_Prod_LP_" + i).selectedIndex);
+        i = i + 1;
+    }
+
+    i = 1;
+    idx += 1;
+    var financiamiento = '<div class="col-xs-12" id = "Largo_Plazo_' + idx + '" style="height:547px;">' +
+            '<h1>Largo Plazo</h1>' +
+            '<h3>(' + idx + '° Financiamiento)</h3>' +
+            '<table class="table table-hover">' +
+            ' <tr><th colspan="3" class="cabezera">Propuesta de financiamiento Largo Plazo</th></tr>' +
+            ' <tr>' +
+            '   <td>Tipo de producto</td>' +
+            '   <td colspan="2">' +
+            '     <select class="form-control" id="Tipo_Prod_LP_' + idx + '" onchange="Calcular_Propuestas_LP();">' +
+            '       <option value="0"></option>' +
+            '       <option value="Leasing Mobiliario">Leasing Mobiliario</option>' +
+            '       <option value="Leasing Inmobiliario">Leasing Inmobiliario</option>' +
+            '       <option value="Préstamo para adquisición de inmueble">Préstamo para adquisición de inmueble</option>' +
+            '       <option value="Préstamo para adquisición de bienes muebles">Préstamo para adquisición de bienes muebles</option>' +
+            '       <option value="Subrogación de deuda">Subrogación de deuda</option>' +
+            '       <option value="Otro">Otro</option>' +
+            '     </select>' +
+            '   </td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Precio Venta</td>' +
+            '   <td><input min="0"  class="form-control" id="Precio_Venta_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();Calcular_EEFF();"/></td>' +
+            '   <td>100%</td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td style="width:40%;">Importe de Financiamiento</td>' +
+            '   <td><input  min="0"  class="form-control" id="Finan_LP_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();Calcular_EEFF();" /></td>' +
+            '   <td><div id="Porc_LP_1_1"></div></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Cuota Inicial</td><td><div id="Cuota_Inicial_LP_' + idx + '"></div></td><td><div id="Porc_LP_1_2"></div></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Tasa anual</td><td><div><input style = "width:24.5%; display:inline"  min="0"  id="TEA_LP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_LP();"/><b>&nbsp;%</b></div></td><td></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Tasa mensual</td><td><div id="TEM_LP_' + idx + '"></div></td><td></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Cuota</td><td><div id="Cuota_LP_' + idx + '"></div></td><td></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Plazo (Meses)</td><td><input  min="0"  class="form-control" id="Plazo_LP_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP()"/></td><td></td>' +
+            ' </tr>' +
+            ' <tr>' +
+            '   <td>Gtia para Prop:</td><td><input  min="0"  class="form-control" id="GTIA_LP_' + idx + '" onkeyup="validarNumero(id);Calcular_Propuestas_LP();"/></td><td></td>' +
+            ' </tr>' +
+            '</table>' +
+            '<input type="hidden" id="Cuota_LP_' + idx + '_hidden" name="Cuota_LP_' + idx + '_hidden">' +
+            '</div>';
+
+
+
+    document.getElementById("Financimiento_LP").innerHTML += financiamiento;
+    document.getElementById("cant_finan_LP").value = idx;
+
+    while (i <= total) {
+        document.getElementById("Tipo_Prod_LP_" + i).selectedIndex = vIndex[i];
+        i = i + 1;
+    }
+}
