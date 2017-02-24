@@ -404,3 +404,82 @@ function Agregar_Financimiento_LP() {
         i = i + 1;
     }
 }
+function Agregar_Financimiento_CP() {
+    var vIndex = [];
+    vIndex.push("Inicio");
+    var idx = Number(document.getElementById("cant_finan_CP").value);
+    var total = idx;
+    var i = 1;
+    while (i <= total) {
+        vIndex.push(document.getElementById("Tipo_Prod_CP_" + i).selectedIndex);
+        i = i + 1;
+    }
+
+    i = 1;
+    idx += 1;
+    var financiamiento = '<div class="col-xs-12" id = "Corto_Plazo_' + idx + '" style="height:547px;">' +
+                         '   <h1>Corto Plazo</h1>' +
+                         '   <h3>(' + idx + '° Financiamiento)</h3>' +
+                         '   <table class="table table-hover">' +
+                         '     <tr><th colspan="2" class="cabezera">Propuesta de financiamiento Corto Plazo</th></tr>' +
+                         '     <tr>' +
+                         '       <td>Tipo de producto</td>' +
+                         '       <td>' +
+                         '         <select class="form-control" id="Tipo_Prod_CP_' + idx + '" onchange="Calcular_Propuestas_CP();Calcular_Estacionalidad();">' +
+                         '           <option value=""></option>' +
+                         '           <option value="Financiamiento de Importación">Financiamiento de Importación</option>' +
+                         '           <option value="Financiamiento de Exportación">Financiamiento de Exportación</option>' +
+                         '           <option value="Préstamo para capital de trabajo">Préstamo para capital de trabajo</option>' +
+                         '           <option value="Tarjeta capital de trabajo">Tarjeta capital de trabajo</option>' +
+                         '           <option value="Descuento de letra/factura negociable">Descuento de letra/factura negociable</option>' +
+                         '           <option value="Tarjeta Empresarial">Tarjeta empresarial</option>' +
+                         '           <option value="Préstamo para adquisición de bienes muebles pequeños">Préstamo para adquisición de bienes muebles pequeños</option>' +
+                         '           <option value="Subrogación de deuda">Subrogación de deuda</option>' +
+                         '           <option value="Incremento de línea de TKT">Incremento de línea de TKT</option>' +
+                         '           <option value="Incremento de línea de T/C">Incremento de línea de T/C empresarial</option>' +
+                         '           <option value="Otro">Otro</option>' +
+                         '         </select>' +
+                         '       </td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td style="width:40%;">Importe de Financiamiento</td>' +
+                         '       <td><input  min="0"  id="Finan_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP();Calcular_EEFF();"/></td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td>Tasa anual</td>' +
+                         '       <td><div><input style="width:20%; display:inline;"  min="0"  id="TEA_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP();"/> <b>%</b></div></td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td>Tasa mensual</td>' +
+                         '       <td><div id="TEM_CP_' + idx + '"></div></td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td>Cuota</td>' +
+                         '       <td><div id="Cuota_CP_' + idx + '"></div></td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td>Plazo (Meses)</td>' +
+                         '       <td><input  min="0"  id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
+                         '     </tr>' +
+                         '     <tr>' +
+                         '       <td>Gastos finan. 1°cuota</td>' +
+                         '       <td><div id="GastFin_CP_' + idx + '"></div></td>' +
+                         '     </tr>' +
+                         '   </table>' +
+                         '   <input type="hidden" id="GastFin_CP_' + idx + '_hidden" name="GastFin_CP_' + idx + '_hidden"/>' +
+                         '   <input type="hidden" id="Cuota_CP_' + idx + '_hidden" name="Cuota_CP_' + idx + '_hidden">' +
+                         ' </div>';
+
+
+
+
+    document.getElementById("Financimiento_CP").innerHTML += financiamiento;
+    document.getElementById("cant_finan_CP").value = idx;
+
+
+    while (i <= total) {
+        document.getElementById("Tipo_Prod_CP_" + i).selectedIndex = vIndex[i]
+        i = i + 1;
+    }
+    Calcular_Propuestas_CP();
+}
