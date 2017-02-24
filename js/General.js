@@ -1,39 +1,3 @@
-function Calcular_Estacionalidad(){
-	var estacional = false;
-	var importador = document.getElementById('importador').value;
-	var finan = convNro(document.getElementById('cant_finan_CP').value);
-	var propuesta = 0;
-	var tit1 = "";
-	var tit2 = "";
-	var tit3 = "";
-	for(var i = 0; i<finan; i++){
-		var p = document.getElementById('Tipo_Prod_CP_'+i).value;
-		if(p = "Préstamo para capital de trabajo" || p = "Préstamo para adquisición de bienes muebles pequeños"){
-			propuesta += 1;
-		}
-	}
-	if(importador != "0" && propuesta !="0"){
-		estacional = true;
-		if(importador == "Si"){
-			tit1 = "PDT - Enero";
-			tit2 = "PDT - Febrero";
-			tit3 = "PDT - Marzo";
-		}else{
-			tit1 = "PDT - Marzo";
-			tit2 = "PDT - Abril";
-			tit3 = "PDT - Mayo";
-		}
-	}
-	
-	if(estacional == true){
-		document.getElementById('seccion_estacionalidad').style.display = '';
-		document.getElementById('tit1').value = tit1;
-		document.getElementById('tit2').value = tit2;
-		document.getElementById('tit3').value = tit3;
-	}else{
-		document.getElementById('seccion_estacionalidad').style.display = 'none';
-	}
-}
 function completarInfo(lista) {
     var analistas = lista[0];
     var oficinas = lista[1];
