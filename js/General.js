@@ -67,3 +67,103 @@ function calcTime(offset) {
     var nd = new Date(utc + (3600000 * offset));
     return nd.toLocaleString();
 }
+function Finalizar() {
+    var idFila = document.getElementById("idFila").value;
+    var lista = enviarInformacion();
+    var checks = "";
+    var radios = document.getElementsByName('crono');
+    for (var i = 0, length = radios.length; i < length; i++) {
+	if (radios[i].checked) {
+	    checks = radios[i].value;
+	}
+    }
+    if (lista != null) {
+	var enviar = [idFila, lista];
+	if(checks=="Si"){
+		var dictamen = document.getElementById('dictamen').value;
+		alert("El dictamen es " +dictamen+ ". Por favor, imprime o guarda el formato.");
+		document.getElementById('seccion_sancion').style.display='block';
+		google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
+		Descargar_Todo();
+		location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
+	}else if(checks=="No"){
+		var confirmar = confirm("Esta a punto de finalizar un informe de visita sin haber llenado el cronograma de pagos. ¿Desea continuar?");
+		if (confirmar) {
+		    var dictamen = document.getElementById('dictamen').value;
+		    alert("El dictamen es " +dictamen+ ". Por favor, imprime o guarda el formato.");
+		    document.getElementById('seccion_sancion').style.display='block';
+		    google.script.run.withSuccessHandler(actualizarIDFila).Finalizar(enviar);
+		    location.replace('https://script.google.com/a/macros/bbva.com/s/AKfycbzAyMnXi6KNx96xIqAjv97WA4Fv6vHbsstXnVYS64ODrfg-tvY/exec');
+		}else{
+		    document.getElementById("seccion_cronograma").focus();
+		}
+		
+	}else{
+		alert("Debe señalar si existe riesgo vigente (Considerar tambien deudas personales)");
+		document.getElementById("seccion_cronograma").focus();
+	}
+    }
+}
+function PreFinalizar() {
+    var idFila = document.getElementById("idFila").value;
+    var lista = enviarInformacion();
+    var enviar = [idFila, lista];
+    google.script.run.withSuccessHandler(actualizarIDFila).PreFinalizar(enviar);
+    alert("Se grabó exitosamente");
+}
+function enviarInformacion() {
+    var listaTodo = [];
+    var lista = [];
+    var DC = getDatosCliente();
+    if (DC != null) {
+        var idxLP = Number(document.getElementById("cant_finan_LP").value);
+        var idxCP = Number(document.getElementById("cant_finan_CP").value);
+        if ((idxLP + idxCP) > 0) {
+            var egp_ventas = convNro(document.getElementById("egp_ventas").value);
+            if (egp_ventas != 0) {
+                lista.push(calcTime(-5));
+                lista.push(DC);
+                var BG = getBalanceGeneral();
+                lista.push(BG);
+                var ER = getEstadoResultados();
+                lista.push(ER);
+                var C = getCanalizacion();
+                lista.push(C);
+                var R = getRatios();
+                lista.push(R);
+                var D = getDictamen();
+                lista.push(D);
+                listaTodo.push(lista);
+                listaTodo.push(getFinanciamientoLP());
+                listaTodo.push(getFinanciamientoCP());
+                listaTodo.push(getPatrimonioInmueble());
+                listaTodo.push(getPatrimonioVehMaq());
+		listaTodo.push(getIngresos());
+		listaTodo.push(getEgresos());
+                listaTodo.push(getLTC());
+                listaTodo.push(getTC());
+                listaTodo.push(getPCCT());
+                listaTodo.push(getPA());
+                listaTodo.push(getPC());
+                listaTodo.push(getPP());
+		listaTodo.push(getResumen());
+		
+                return listaTodo;
+            } else {
+                alert("Falta completar las ventas");
+                return null;
+            }
+        } else {
+            alert("Debe tener al menos un financiamiento");
+            return null;
+        }
+    }
+}
+function convNro(nroComas) {
+    var arreglo = String(nroComas).split(",");
+    var sinComas = arreglo.join("");
+    if (isNaN(sinComas)) {
+        return 0;
+    }
+    return Number(sinComas);
+}
