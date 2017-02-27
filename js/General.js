@@ -309,6 +309,8 @@ function EvaluarCalculadora() {
 }
 function evaluarFavorable() {
     var favorable = false;
+    document.getElementById("dictamen").selectedIndex = "1";
+    document.getElementById("dictamen").disabled = true;
     var ventas = convNro(document.getElementById('egp_ventas').value);
     if (ventas > 30000) {
         var egp_uneta = convNro(document.getElementById('egp_uneta').value);
@@ -356,12 +358,9 @@ function evaluarFavorable() {
         }
     }
 	document.getElementById("dictamen").disabled = false;
+    alert(favorable);
     if(favorable == true){
     	document.getElementById("dictamen").selectedIndex = "0";
-	    
-    }else{
-	document.getElementById("dictamen").selectedIndex = "1";
-        document.getElementById("dictamen").disabled = true;
     }
     document.getElementById("motivo").style.display = 'none';
     return favorable;
