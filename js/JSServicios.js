@@ -1,3 +1,44 @@
+function getDatosCliente1() {
+    var lista = [];
+    var regimen = document.getElementById('regimen').value;
+    lista.push(regimen);
+    var rvgl = (document.getElementById('rvgl').value);
+    lista.push(rvgl);
+    var analista = document.getElementById('analista').value;
+    lista.push(analista);
+    var fechaVisita = document.getElementById('fechaVisita').value;
+    lista.push(fechaVisita);
+    var oficinas = document.getElementById('oficinas').value;
+    lista.push(oficinas);
+    var tipoCliente = document.getElementById('tipoCliente').value;
+    lista.push(tipoCliente);
+    var razonSocial = document.getElementById('razonSocial').value;
+    lista.push(razonSocial);
+    var ruc = (document.getElementById('ruc').value);
+    lista.push(ruc);
+    var ubicacion = document.getElementById('ubicacion').value;
+    lista.push(ubicacion);
+    var aExp = (document.getElementById('aExp').value);
+    lista.push(aExp);
+    var nroPtosVta = (document.getElementById('nroPtosVta').value);
+    lista.push(nroPtosVta);
+    var actividad = document.getElementById('actividad').value;
+    lista.push(actividad);
+    var actEspecifica = document.getElementById('actEspecifica').value;
+    lista.push(actEspecifica);
+    var buro = document.getElementById('buro').value;
+    lista.push(buro);
+    var nroEnt = (document.getElementById('nroEnt').value);
+    lista.push(nroEnt);
+    var edadRL = (document.getElementById('edadRL').value);
+    lista.push(edadRL);
+    if (edadRL < 18) {
+        alert("El representante legal debe ser mayor de edad");
+        return null;
+    }
+    return lista;
+}
+
 function AgregarServicios() {
     var table = document.getElementById("tablaServicios");
     var idx = table.rows.length - 1;
