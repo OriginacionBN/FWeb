@@ -147,8 +147,12 @@ function PreFinalizar() {
     evaluarFavorable();
     var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion1();
+	if(lista!=null){
     var enviar = [idFila, lista];
     google.script.run.withSuccessHandler(actualizarIDFila).PreFinalizar(enviar);
+	}else{
+		alert("No se ha guardado ningún cambio");
+	}
 }
 function enviarInformacion() {
     var listaTodo = [];
