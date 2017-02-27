@@ -202,7 +202,7 @@ function enviarInformacion1() {
     var listaTodo = [];
     var lista = [];
     var DC = getDatosCliente1();
-            var egp_ventas = convNro(document.getElementById("egp_ventas").value);
+    if (DC != null) {
                 lista.push(calcTime(-5));
                 lista.push(DC);
                 var BG = getBalanceGeneral();
@@ -231,7 +231,7 @@ function enviarInformacion1() {
 		listaTodo.push(getResumen());
 		alert("Se grabaron los datos ingresados");
                 return listaTodo;
-        
+    }
 }
 function convNro(nroComas) {
     var arreglo = String(nroComas).split(",");
