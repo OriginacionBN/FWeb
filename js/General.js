@@ -106,6 +106,7 @@ function calcTime(offset) {
     return nd.toLocaleString();
 }
 function Finalizar() {
+    evaluarFavorable();
     var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion();
     var checks = "";
@@ -145,7 +146,7 @@ function Finalizar() {
 function PreFinalizar() {
     evaluarFavorable();
     var idFila = document.getElementById("idFila").value;
-    var lista = enviarInformacion();
+    var lista = enviarInformacion1();
     var enviar = [idFila, lista];
     google.script.run.withSuccessHandler(actualizarIDFila).PreFinalizar(enviar);
 }
@@ -196,6 +197,41 @@ function enviarInformacion() {
             return null;
         }
     }
+}
+function enviarInformacion1() {
+    var listaTodo = [];
+    var lista = [];
+    var DC = getDatosCliente1();
+            var egp_ventas = convNro(document.getElementById("egp_ventas").value);
+                lista.push(calcTime(-5));
+                lista.push(DC);
+                var BG = getBalanceGeneral();
+                lista.push(BG);
+                var ER = getEstadoResultados();
+                lista.push(ER);
+                var C = getCanalizacion();
+                lista.push(C);
+                var R = getRatios();
+                lista.push(R);
+                var D = getDictamen();
+                lista.push(D);
+                listaTodo.push(lista);
+                listaTodo.push(getFinanciamientoLP());
+                listaTodo.push(getFinanciamientoCP());
+                listaTodo.push(getPatrimonioInmueble());
+                listaTodo.push(getPatrimonioVehMaq());
+		listaTodo.push(getIngresos());
+		listaTodo.push(getEgresos());
+                listaTodo.push(getLTC());
+                listaTodo.push(getTC());
+                listaTodo.push(getPCCT());
+                listaTodo.push(getPA());
+                listaTodo.push(getPC());
+                listaTodo.push(getPP());
+		listaTodo.push(getResumen());
+		alert("Se grabaron los datos ingresados");
+                return listaTodo;
+        
 }
 function convNro(nroComas) {
     var arreglo = String(nroComas).split(",");
@@ -311,7 +347,7 @@ function evaluarFavorable() {
     var favorable = false;
     document.getElementById("dictamen").disabled = false;
     document.getElementById("dictamen").selectedIndex = "1";
-	alert(document.getElementById("dictamen").value);
+
     var ventas = convNro(document.getElementById('egp_ventas').value);
     if (ventas > 30000) {
         var egp_uneta = convNro(document.getElementById('egp_uneta').value);
@@ -358,11 +394,10 @@ function evaluarFavorable() {
             }
         }
     }
-	
-    alert(favorable);
     if(favorable == true){
     	document.getElementById("dictamen").selectedIndex = "0";
     }
+	document.getElementById("dictamen").disabled = true;
     document.getElementById("motivo").style.display = 'none';
     return favorable;
 }
