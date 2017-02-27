@@ -143,11 +143,11 @@ function Finalizar() {
     }
 }
 function PreFinalizar() {
+    evaluarFavorable();
     var idFila = document.getElementById("idFila").value;
     var lista = enviarInformacion();
     var enviar = [idFila, lista];
     google.script.run.withSuccessHandler(actualizarIDFila).PreFinalizar(enviar);
-    alert("Se grabó exitosamente");
 }
 function enviarInformacion() {
     var listaTodo = [];
