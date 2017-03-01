@@ -75,13 +75,13 @@ function cambioSancion() {
     var favorable_des = document.getElementById("dictamen").value;
     var CoberturaDeuda = convNro(document.getElementById("CoberturaDeuda").value);
     if (CoberturaDeuda < 1) {
-        if (favorable_des == "Desfavorable") {
+        if (favorable_des == "No califica") {
             document.getElementById("motivo").style.display = 'none';
         } else {
             document.getElementById("motivo").style.display = 'block';
         }
     } else {
-        if (favorable_des == "Favorable") {
+        if (favorable_des == "Califica") {
             document.getElementById("motivo").style.display = 'none';
         } else {
             document.getElementById("motivo").style.display = 'block';
@@ -89,7 +89,7 @@ function cambioSancion() {
     }
     var gastoFinanciero = convNro(document.getElementById("egp_gastfinan").value);
     if (gastoFinanciero == 0) {
-        if (favorable_des == "Favorable") {
+        if (favorable_des == "Califica") {
             document.getElementById("motivo").style.display = 'none';
         } else {
             document.getElementById("motivo").style.display = 'block';
