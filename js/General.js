@@ -950,3 +950,6 @@ function getGastosPersonales(){
 	lista.push(document.getElementById("total_gastpersonal").value);
 	return lista;
 }
+function EvaluarEstacionalidad(){
+	
+}
