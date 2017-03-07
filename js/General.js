@@ -563,9 +563,9 @@ function Agregar_Financimiento_CP() {
 function VerificarPlazo(idProducto,idPlazo){
 	var plazo = document.getElementById(idPlazo).value;
 	var producto = document.getElementById(idProducto).value;
-	if(convNro(a) > 18 && producto = "Tarjeta capital de trabajo"){
+	if(convNro(plazo) > 18 && producto = "Tarjeta capital de trabajo"){
 		alert("El plazo máximo de TKT es de 18 meses");
-		document.getElementById(id).value = 18;
+		document.getElementById(idPlazo).value = 18;
 	}
 }
 function Eliminar_Financimiento_LP() {
