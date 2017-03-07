@@ -502,7 +502,7 @@ function Agregar_Financimiento_CP() {
                          '     <tr>' +
                          '       <td>Tipo de producto</td>' +
                          '       <td>' +
-                         '         <select class="form-control" id="Tipo_Prod_CP_' + idx + '" onchange="Calcular_Propuestas_CP();Calcular_Estacionalidad();">' +
+                         '         <select class="form-control" id="Tipo_Prod_CP_' + idx + '" onchange="Calcular_Propuestas_CP();">' +
                          '           <option value=""></option>' +
                          '           <!--<option value="Financiamiento de Importación">Financiamiento de Importación</option>' +
                          '           <option value="Financiamiento de Exportación">Financiamiento de Exportación</option>' +
