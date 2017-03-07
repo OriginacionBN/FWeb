@@ -536,7 +536,7 @@ function Agregar_Financimiento_CP() {
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Plazo (Meses)</td>' +
-                         '       <td><input  type="number" min="0" max="18"  id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
+                         '       <td><input min="0" onchange = "VerificarPlazo(id);" id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Gastos finan. 1°cuota</td>' +
@@ -560,7 +560,10 @@ function Agregar_Financimiento_CP() {
     }
     Calcular_Propuestas_CP();
 }
-
+function VerificarPlazo(id){
+	var a = document.getElementById(id).value;
+	alert(a);
+}
 function Eliminar_Financimiento_LP() {
     var idx = document.getElementById("cant_finan_LP").value;
     if (idx > 0) {
