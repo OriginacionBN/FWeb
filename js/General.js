@@ -536,7 +536,7 @@ function Agregar_Financimiento_CP() {
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Plazo (Meses)</td>' +
-                         '       <td><input min="0" id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP();"/></td>' +
+                         '       <td><input min="0" id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP();VerificarPlazo('+"Tipo_Prod_CP_" + idx + "'"+',this.id);"/></td>' +
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Gastos finan. 1°cuota</td>' +
