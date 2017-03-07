@@ -536,7 +536,7 @@ function Agregar_Financimiento_CP() {
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Plazo (Meses)</td>' +
-                         '       <td><input min="0" onchange = "VerificarPlazo(id);" id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
+                         '       <td><input min="0" onchange = "VerificarPlazo(\'Tipo_Prod_CP_\'+idx,id);" id="Plazo_CP_' + idx + '" class="form-control" onkeyup="validarNumero(id);Calcular_Propuestas_CP()"/></td>' +
                          '     </tr>' +
                          '     <tr>' +
                          '       <td>Gastos finan. 1°cuota</td>' +
@@ -560,9 +560,13 @@ function Agregar_Financimiento_CP() {
     }
     Calcular_Propuestas_CP();
 }
-function VerificarPlazo(id){
-	var a = document.getElementById(id).value;
-	alert(a);
+function VerificarPlazo(idProducto,idPlazo){
+	var plazo = document.getElementById(idPlazo).value;
+	var producto = document.getElementById(idProducto).value;
+	if(convNro(a) > 18 && producto = "Tarjeta capital de trabajo"){
+		alert("El plazo máximo de TKT es de 18 meses");
+		document.getElementById(id).value = 18;
+	}
 }
 function Eliminar_Financimiento_LP() {
     var idx = document.getElementById("cant_finan_LP").value;
