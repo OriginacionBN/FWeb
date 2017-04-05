@@ -116,6 +116,7 @@ function Finalizar() {
 	    checks = radios[i].value;
 	}
     }
+	checks="Si"
     if (lista != null) {
 	var enviar = [idFila, lista];
 	if(checks=="Si"){
