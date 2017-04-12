@@ -326,14 +326,21 @@ function AgregarPrestamoPersonal() {
 }
 function Calcular_Prestamo_Personal(idx) {
     var producto = document.getElementById("PP_Producto_" + idx).value;
+    var PPDIFF = 0;
     if (producto != 0) {
         var TEA = 0;
+        var PP_LD_DIFF = convNro(document.getElementById("PP_LD_DIFF").value);
+        var PP_H_DIFF = convNro(document.getElementById("PP_H_DIFF").value);
+        var PP_V_DIFF = convNro(document.getElementById("PP_V_DIFF").value);
         if (producto == 1) {
             TEA = TEAPPVehicular;
+            PPDIFF = PP_V_DIFF;
         } else if (producto == 2) {
             TEA = TEAPPHipotecario;
+            PPDIFF = PP_H_DIFF;
         } else if (producto == 3) {
             TEA = TEAPPLibre;
+            PPDIFF = PP_LD_DIFF;
         }
         var TEM = retornarTEM(TEA);
         document.getElementById("PP_TEM_" + idx).value = TEM;
@@ -357,7 +364,7 @@ function Calcular_Prestamo_Personal(idx) {
         document.getElementById("PP_Costo_Financiero_" + idx).value = PP_Costo_Financiero;
         PP_Amort_Capital = Number(PP_Amort_Capital);
         PP_Costo_Financiero = Number(PP_Costo_Financiero);
-        var PP_Cuota_Pagar_Aprox = PP_Amort_Capital + PP_Costo_Financiero;
+        var PP_Cuota_Pagar_Aprox = PP_Amort_Capital + PP_Costo_Financiero + PPDIFF;
         PP_Cuota_Pagar_Aprox = Number(PP_Cuota_Pagar_Aprox).toFixed(0);
         document.getElementById("PP_Cuota_Pagar_Aprox_" + idx).innerHTML = Number(PP_Cuota_Pagar_Aprox).toLocaleString('en');
         document.getElementById("PP_Cuota_Pagar_Aprox_" + idx).value = PP_Cuota_Pagar_Aprox;
