@@ -258,7 +258,8 @@ function AgregarPrestamoAdquisicion() {
 function Calcular_Prestamo_Adquisicion(idx) {
     var PA_Mes_Anterior = convNro(document.getElementById("PA_Mes_Anterior_" + idx).value);
     var PA_Mes_Actual = convNro(document.getElementById("PA_Mes_Actual_" + idx).value);
-
+    var PA_DIFF = convNro(document.getElementById("PA_DIFF").value);
+    
     var PA_Amort_Capital = PA_Mes_Anterior - PA_Mes_Actual;
     document.getElementById("PA_Amort_Capital_" + idx).innerHTML = Number(PA_Amort_Capital).toLocaleString('en');
     document.getElementById("PA_Amort_Capital_" + idx).value = PA_Amort_Capital;
@@ -270,7 +271,7 @@ function Calcular_Prestamo_Adquisicion(idx) {
     document.getElementById("PA_Costo_Financiero_" + idx).value = PA_Costo_Financiero;
     PA_Amort_Capital = Number(PA_Amort_Capital);
     PA_Costo_Financiero = Number(PA_Costo_Financiero);
-    var PA_Cuota_Pagar_Aprox = PA_Amort_Capital + PA_Costo_Financiero;
+    var PA_Cuota_Pagar_Aprox = PA_Amort_Capital + PA_Costo_Financiero + PA_DIFF;
     PA_Cuota_Pagar_Aprox = Number(PA_Cuota_Pagar_Aprox).toFixed(0);
     document.getElementById("PA_Cuota_Pagar_Aprox_" + idx).innerHTML = Number(PA_Cuota_Pagar_Aprox).toLocaleString('en');
     document.getElementById("PA_Cuota_Pagar_Aprox_" + idx).value = PA_Cuota_Pagar_Aprox;
